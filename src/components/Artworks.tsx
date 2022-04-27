@@ -14,7 +14,13 @@ export const Artworks = () => {
   }, []);
 
   return (
-    <SimpleGrid columns={4} spacing={10}>
+    <SimpleGrid
+      bg="rgb(19 24 53)"
+      columns={4}
+      spacing={10}
+      paddingBlock={10}
+      paddingInline={40}
+    >
       {loading ? (
         <LoadingComponent />
       ) : (
@@ -25,10 +31,11 @@ export const Artworks = () => {
               borderWidth="1px"
               borderRadius="lg"
               overflow="hidden"
+              color="white"
               key={nft.id}
               _hover={{
-                boxShadow:
-                  "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+                boxShadow: "0px 11px 17px 7px rgba(207,40,131,0.44)",
+                // borderColor: "red",
               }}
             >
               <Image src={nft.imageUrl} alt={nft.description} />

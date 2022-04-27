@@ -18,10 +18,6 @@ import { useAppDispatch, useAppSelector } from "../hooks";
 const siteTitle = "NFT App";
 import ethLogo from "assets/ethlogo.png";
 
-interface ImageType {
-  src?: string | undefined;
-}
-
 export default function Header() {
   const { user_address } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
@@ -30,20 +26,21 @@ export default function Header() {
     dispatch(connectWallet());
   };
 
-  console.log(ethLogo);
-
   return (
     <Flex
       as="header"
-      bg={useColorModeValue("gray.100", "gray.900")}
-      p={4}
+      backgroundImage="linear-gradient(90deg, rgba(54,51,98,1) 0%, rgba(162,34,56,1) 31%, rgba(170,58,156,1) 100%)"
+      paddingBlock={4}
+      paddingInline={40}
       alignItems="center"
     >
       <LinkBox>
         <NextLink href={"/"} passHref>
-          <LinkOverlay>
+          <LinkOverlay display="flex" alignItems="center">
             <Image boxSize="50px" objectFit="cover" src={ethLogo.src} />
-            <Heading size="md">{siteTitle}</Heading>
+            <Heading size="xl" fontWeight="extrabold" color="white">
+              {siteTitle}
+            </Heading>
           </LinkOverlay>
         </NextLink>
       </LinkBox>

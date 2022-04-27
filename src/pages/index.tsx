@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Adulam from "abis/Adulam.json";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { Artworks } from "../components/Artworks";
+import { Hero } from "../components/Hero";
 
 declare let window: any;
 
@@ -34,6 +35,7 @@ const Home: NextPage = () => {
       <Head>
         <title>My DAPP</title>
       </Head>
+      <Hero />
       <Artworks />
     </>
   );
