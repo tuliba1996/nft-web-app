@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { connectWallet } from "../action/userAction";
+import { connectWallet, getAddress } from "../action/userAction";
 
 interface UserState {
   user_address: string | null;
@@ -22,6 +22,9 @@ export const userSlice = createSlice({
       .addCase(connectWallet.pending, (state, action) => {})
       .addCase(connectWallet.fulfilled, (state, action: PayloadAction<any>) => {
         state.user_address = action.payload;
+      })
+      .addCase(getAddress.fulfilled, (state, acction: PayloadAction<any>) => {
+        state.user_address = acction.payload;
       });
   },
 });

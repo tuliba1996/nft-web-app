@@ -15,12 +15,14 @@ interface NftType {
 
 interface NftState {
   loading: boolean;
+  isShowModal: boolean;
   data: NftType[];
   error: string | null;
 }
 
 const initialState: NftState = {
   loading: false,
+  isShowModal: false,
   data: [],
   error: null,
 };
@@ -31,6 +33,9 @@ export const nftSlice = createSlice({
   reducers: {
     getNfts: (state) => {
       // state.loading = true;
+    },
+    mintNft: (state, action) => {
+      state.isShowModal = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -48,6 +53,6 @@ export const nftSlice = createSlice({
   },
 });
 
-export const { getNfts } = nftSlice.actions;
+export const { getNfts, mintNft } = nftSlice.actions;
 
 export default nftSlice.reducer;

@@ -14,3 +14,13 @@ export const connectWallet = createAsyncThunk(
     if (accounts.length > 0) return accounts[0];
   }
 );
+
+export const getAddress = createAsyncThunk("user/getAddress", async () => {
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const signer = await provider.getSigner();
+  if (signer) {
+    return await signer.getAddress();
+  } else {
+    connectWallet();
+  }
+});

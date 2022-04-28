@@ -54,7 +54,7 @@ export default function Header() {
           lineHeight="tight"
           isTruncated
         >
-          <Badge borderRadius="full" px="2" colorScheme="teal">
+          <Badge borderRadius="full" p="3" colorScheme="teal">
             {user_address}
           </Badge>
         </Box>
