@@ -54,50 +54,51 @@ export const Artworks = () => {
       </Center>
       <Center>{loading ? <LoadingComponent /> : null}</Center>
       <SimpleGrid columns={4} spacing={10} pt={10}>
-        {nfts.map((nft) => {
-          return (
-            <Box
-              maxW="sm"
-              borderWidth="1px"
-              borderRadius="lg"
-              overflow="hidden"
-              color="white"
-              key={nft.id}
-              _hover={{
-                boxShadow: "0px 11px 17px 7px rgba(207,40,131,0.44)",
-              }}
-            >
-              <Image src={nft.imageUrl} alt={nft.description} />
-              <Box p="6">
-                <Box display="flex" alignItems="baseline">
-                  <Badge borderRadius="full" px="2" colorScheme="teal">
-                    #{nft.id}
-                  </Badge>
-                  <Box
-                    fontWeight="semibold"
-                    letterSpacing="wide"
-                    fontSize="xs"
-                    textTransform="uppercase"
-                    ml="2"
-                  >
-                    {nft.cost} &bull; ETH
+        {nfts &&
+          nfts.map((nft) => {
+            return (
+              <Box
+                maxW="sm"
+                borderWidth="1px"
+                borderRadius="lg"
+                overflow="hidden"
+                color="white"
+                key={nft.id}
+                _hover={{
+                  boxShadow: "0px 11px 17px 7px rgba(207,40,131,0.44)",
+                }}
+              >
+                <Image src={nft.imageUrl} alt={nft.description} />
+                <Box p="6">
+                  <Box display="flex" alignItems="baseline">
+                    <Badge borderRadius="full" px="2" colorScheme="teal">
+                      #{nft.id}
+                    </Badge>
+                    <Box
+                      fontWeight="semibold"
+                      letterSpacing="wide"
+                      fontSize="xs"
+                      textTransform="uppercase"
+                      ml="2"
+                    >
+                      {nft.cost} &bull; ETH
+                    </Box>
                   </Box>
-                </Box>
-                <Box
-                  mt="1"
-                  fontWeight="semibold"
-                  as="h4"
-                  lineHeight="tight"
-                  isTruncated
-                >
-                  {nft.title}
-                </Box>
+                  <Box
+                    mt="1"
+                    fontWeight="semibold"
+                    as="h4"
+                    lineHeight="tight"
+                    isTruncated
+                  >
+                    {nft.title}
+                  </Box>
 
-                <Box isTruncated>{nft.description}</Box>
+                  <Box isTruncated>{nft.description}</Box>
+                </Box>
               </Box>
-            </Box>
-          );
-        })}
+            );
+          })}
       </SimpleGrid>
     </SimpleGrid>
   );

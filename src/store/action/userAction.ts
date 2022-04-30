@@ -16,6 +16,10 @@ export const connectWallet = createAsyncThunk(
 );
 
 export const getAddress = createAsyncThunk("user/getAddress", async () => {
+  if (!window.ethereum) {
+    console.log("please install MetaMask");
+    return;
+  }
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = await provider.getSigner();
   if (signer) {

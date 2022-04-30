@@ -1,30 +1,29 @@
-import {
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogFooter,
-  Button,
-  Center,
-  Text,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { Button, Center, Text } from "@chakra-ui/react";
 import { DownloadIcon } from "@chakra-ui/icons";
 import { mintNFT } from "../store/action/nftAction";
 import { useAppSelector } from "../hooks";
-import { ReactNode, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 import { AlertComponent } from "./AlertComponent";
 
-function AlertDialogOverlay(props: { children: ReactNode }) {
-  return null;
-}
+declare let window: any;
 
 export const Hero = () => {
   const { user_address } = useAppSelector((state) => state.user);
   const { data } = useAppSelector((state) => state.nft);
+  const [isInstallWallet, setIsInstallWallet] = useState(true);
   const handleOnClick = () => {
-    mintNFT(data.length + 1, user_address);
+    if (isInstallWallet) {
+      mintNFT(data.length + 1, user_address);
+    } else {
+      alert("Please install MetaMask");
+    }
   };
+
+  useEffect(() => {
+    if (!window.ethereum) {
+      setIsInstallWallet(false);
+    }
+  });
 
   return (
     <Center
@@ -42,6 +41,7 @@ export const Hero = () => {
         variant="solid"
         marginBlock={5}
         onClick={handleOnClick}
+        isDisabled={!isInstallWallet}
       >
         Mint Now
       </Button>
