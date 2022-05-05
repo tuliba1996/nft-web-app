@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ethers } from "ethers";
-import { dispatch, store } from "../index";
 
 const CHAINID = 4;
 

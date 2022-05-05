@@ -10,8 +10,15 @@
   padding-inline-end: 0!important;
 }
 
-.css-ku83r2 {
+.hero-container {
   flex-direction: column;
+}
+.footer-container {
+  flex-direction: column;
+}
+.footer-icon-container{
+  flex-direction: row;
+  display: flex;
 }
 
 .css-l9b3j9 {

@@ -10,6 +10,7 @@ import {
   getCurrentNetWork,
   switchNetWorkWallet,
 } from "../store/action/userAction";
+import ethLogo from "assets/ethlogo.png";
 
 declare let window: any;
 
@@ -33,7 +34,8 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>My DAPP</title>
+        <title>NFT APP</title>
+        <link rel="icon" href={ethLogo.src} />
       </Head>
       <Hero />
       <Artworks />
