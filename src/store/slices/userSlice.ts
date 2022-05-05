@@ -1,12 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { connectWallet, getAddress } from "../action/userAction";
+import {
+  connectWallet,
+  getAddress,
+  getCurrentNetWork,
+  switchNetWorkWallet,
+} from "../action/userAction";
 
 interface UserState {
   user_address: string | null;
+  chainId: number | null;
 }
 
 const initialState: UserState = {
   user_address: null,
+  chainId: null, // Default chain Rinkeby test net
 };
 
 export const userSlice = createSlice({
@@ -23,9 +30,21 @@ export const userSlice = createSlice({
       .addCase(connectWallet.fulfilled, (state, action: PayloadAction<any>) => {
         state.user_address = action.payload;
       })
-      .addCase(getAddress.fulfilled, (state, acction: PayloadAction<any>) => {
-        state.user_address = acction.payload;
-      });
+      .addCase(getAddress.fulfilled, (state, action: PayloadAction<any>) => {
+        state.user_address = action.payload;
+      })
+      .addCase(
+        getCurrentNetWork.fulfilled,
+        (state, action: PayloadAction<any>) => {
+          state.chainId = action.payload;
+        }
+      )
+      .addCase(
+        switchNetWorkWallet.fulfilled,
+        (state, action: PayloadAction<any>) => {
+          state.chainId = action.payload;
+        }
+      );
   },
 });
 

@@ -5,21 +5,30 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { Artworks } from "../components/Artworks";
 import { Hero } from "../components/Hero";
-import { getAddress } from "../store/action/userAction";
-import { AlertComponent } from "../components/AlertComponent";
+import {
+  getAddress,
+  getCurrentNetWork,
+  switchNetWorkWallet,
+} from "../store/action/userAction";
 
 declare let window: any;
 
 const Home: NextPage = () => {
   const dispatch = useAppDispatch();
   const currentAccount = useAppSelector((state) => state.user.user_address);
+  const { chainId } = useAppSelector((state) => state.user);
 
   useEffect(() => {
+    if (!window.ethereum) return;
     if (!currentAccount || !ethers.utils.isAddress(currentAccount)) {
+      dispatch(getCurrentNetWork());
       dispatch(getAddress());
     }
-    if (!window.ethereum) return;
   }, [currentAccount]);
+
+  useEffect(() => {
+    if (chainId !== 4) dispatch(switchNetWorkWallet());
+  }, []);
 
   return (
     <>

@@ -15,12 +15,13 @@ import { HamburgerIcon, MoonIcon } from "@chakra-ui/icons";
 export const Artworks = () => {
   const { loading } = useAppSelector((state) => state.nft);
   const { user_address } = useAppSelector((state) => state.user);
+  const { chainId } = useAppSelector((state) => state.user);
   const nfts = useAppSelector((state) => state.nft.data);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchNfts());
-  }, []);
+  }, [user_address, chainId]);
 
   const filterNft = (address?: string | null) => {
     address
